@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exe.002</title>
+</head>
+
+<body>
+    <p id="meuParagrafo">Valdinei</p>
+    <button id="meuBotão" onclick="mudarTexto()">Mudar Texto</button>
+
+    <script>
+        function mudarTexto() {
+            let paragrafo = document.getElementById("meuParagrafo");
+            let botao = document.getElementById("meuBotão");
+            
+            if (paragrafo.innerText === "Valdinei.") {
+                paragrafo.innerText = "Valdinei Matos."
+                botao.innerText = "Mostras Menos"
+                } else {
+                    paragrafo.innerText = "Valdinei."
+                    botao.innerText = "Mostar Mais"
+                }
+        }
+    </script>   
+</body>
+</html>
