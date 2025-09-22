@@ -3,21 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
+    <title>Contador/Calculadora</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .bloco {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 400px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        #valor {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 16px 0;
+        }
+
+        .positivo { color: green; }
+        .negativo { color: red; }
+        .zero { color: black; }
+        .soma { background-color: #10b981; color: #fff; }
+        .subtrair { background-color: #ef4444; color: #fff; }
+        .multiplicar { background-color: #3b82f6; color: #fff; }
+        .dividir { background-color: #f59e0b; color: #fff; }
+
+        button {
+            padding: 10px 16px;
+            margin: 4px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: filter .2s;
+         }
+
+        button:hover { filter: brightness(0.95); }
+
+        .aumentar { background-color: #16a34a; color: #fff; }
+        .diminuir { background-color: #dc2626; color: #fff; }
+        .resetar { background-color: #2563eb; color: #fff; }
+        .limpar { background-color: #6b7280; color: #fff; margin-top: 10px; }       
+
+    </style>
 </head>
 <body>
-    <input type="number" id="num1" placeholder="Digite um número">
-    <input type="number" id="num2" placeholder="Digite outro número">
-    <p id="resultado">Resultado: </p>
-    <button onclick="somar()">Somar</button>
-    <button onclick="subtrair()">Subtrair</button>
-    <button onclick="multiplicar()">Multiplicar</button>
-    <button onclick="dividir()">Dividir</button>
-    <br>
-    <br>
-    <button onclick="limpar()">Limpar</button>
+    <div class="bloco">
+        <H1>Contador / Calculadora</H1>
+        <p>Este projeto combina um contador simples e uma calculadora básica em uma única interface. Você pode aumentar, diminuir ou resetar o contador, bem como realizar operações matemáticas básicas como soma, subtração, multiplicação e divisão.</p>
+    </div>
+
+    <div class="bloco">
+        <h2>Contador</h2>
+
+        <p id="valor" class="zero">0</p>
+
+        <button class="aumentar" onclick="amt()">Aumentar</button>
+        <button class="diminuir" onclick="dsm()">Diminuir</button>
+        <button class="resetar" onclick="rst()">Resetar</button>
+    </div>
+
+    <div class="bloco">
+        <h2>Calculadora</h2>
+
+        <input type="number" id="num1" placeholder="Digite um número">
+        <input type="number" id="num2" placeholder="Digite outro número">
+        <p id="resultado">Resultado: </p>
+        <button class="soma" onclick="somar()">Somar</button>
+        <button class="subtrair" onclick="subtrair()">Subtrair</button>
+        <button class="multiplicar" onclick="multiplicar()">Multiplicar</button>
+        <button class="dividir" onclick="dividir()">Dividir</button>
+        <br>
+        <button class="limpar" onclick="limpar()">Limpar</button>
+    </div>
 
     <script>
+        let contador = 0;
+
+        function atualizarValor() {
+            const valorElemento = document.getElementById("valor");
+            valorElemento.innerText = contador;
+            valorElemento.classList.remove("positivo", "negativo", "zero");
+            if (contador > 0) {
+                valorElemento.classList.add("positivo");
+            } else if (contador < 0) {
+                valorElemento.classList.add("negativo");
+            } else {
+                valorElemento.classList.add("zero");
+            }
+        }
+        function amt() {
+            contador++;
+            atualizarValor();
+        }
+        function dsm () {
+            contador--;
+            atualizarValor();
+        }
+        function rst () {
+            contador = 0;
+            atualizarValor();
+        }
+        atualizarValor();
+
         function limpar() {
             document.getElementById("num1").value = "";
             document.getElementById("num2").value = "";
@@ -68,6 +162,5 @@
             document.getElementById("resultado").innerText = "Resultado: " + resultado;
         }
     </script>
-    
 </body>
 </html>
