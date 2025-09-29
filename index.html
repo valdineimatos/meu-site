@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contador/Calculadora</title>
+    <title>Contador/Calculadora/Relógio</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -49,14 +49,28 @@
         .aumentar { background-color: #16a34a; color: #fff; }
         .diminuir { background-color: #dc2626; color: #fff; }
         .resetar { background-color: #2563eb; color: #fff; }
-        .limpar { background-color: #6b7280; color: #fff; margin-top: 10px; }       
+        .limpar { background-color: #6b7280; color: #fff; margin-top: 10px; }
+        
+        #relogio {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 400px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
 
     </style>
 </head>
 <body>
     <div class="bloco">
-        <H1>Contador / Calculadora</H1>
-        <p>Este projeto combina um contador simples e uma calculadora básica em uma única interface. Você pode aumentar, diminuir ou resetar o contador, bem como realizar operações matemáticas básicas como soma, subtração, multiplicação e divisão.</p>
+        <H1>Contador / Calculadora / Relógio</H1>
+
+    </div>
+        <div id ="relogio">
+        <h1>Hora / Data</h1>
+        <div id="hora">00:00:00</div>
+        <div id="data">01/01/1970</div>
     </div>
 
     <div class="bloco">
@@ -84,6 +98,22 @@
     </div>
 
     <script>
+
+        function atualizarRelogio() {
+            const agora = new Date();
+            const horas = String(agora.getHours()).padStart(2, '0');
+            const minutos = String(agora.getMinutes()).padStart(2, '0');
+            const segundos = String(agora.getSeconds()).padStart(2, '0');
+            const dia = String(agora.getDate()).padStart(2, '0');
+            const mes = String(agora.getMonth() + 1).padStart(2, '0');
+            const ano = agora.getFullYear();
+
+            document.getElementById('hora').textContent = `${horas}:${minutos}:${segundos}`;
+            document.getElementById('data').textContent = `${dia}/${mes}/${ano}`;
+        }
+
+        setInterval(atualizarRelogio, 1000);
+        atualizarRelogio();
         let contador = 0;
 
         function atualizarValor() {
@@ -161,6 +191,7 @@
             let resultado = n1 / n2;
             document.getElementById("resultado").innerText = "Resultado: " + resultado;
         }
+
     </script>
 </body>
 </html>
